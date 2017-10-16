@@ -1,0 +1,82 @@
+
+
+<div class="w-75" style="margin:0 auto;">
+	
+	<button ng-hide="vm.showContactButton" ng-click="vm.showContactBox = !vm.showContactBox" class="btn btn-sm btn-primary">Add Contact</button>
+	
+	<button ng-show="vm.showContactBox" ng-click="vm.showContactButton = !vm.showContactButton" class="btn btn-sm btn-primary">Hide Section</button>
+	
+	<div ng-show="vm.showContactBox">
+		<form class="form-group" style="border:solid thin lightgrey;border-radius:5px;padding:2%;">
+			<h4 style="text-align:center">Add Contact</h4>
+			<label>Name:</label>
+			<input ng-model="vm.name" placeholder="Name" type="text" class="form-control"/><p><div></div>
+			<label>Number:</label>
+			<input ng-model="vm.number" placeholder="Number" type="text" class="form-control"/><p><div></div>
+			<button ng-click="vm.addContact(vm.name,vm.number)" class="btn btn-success">Add Contact</button>
+		</form>
+		<ul class="list-group">
+			<li class="list-group-item">
+				<table class="table">
+					<thead>
+						<th>Name</th>
+						<th>Number</th>
+					</thead>
+					<tr ng-repeat="contact in vm.contacts">
+						<td>{{contact.name}}</td>
+						<td>{{contact.number}}</td>
+						<td><button ng-click="vm.deleteContact(contact._id)" class="btn btn-sm btn-danger">Delete</button></td>
+					</tr>
+				</table>
+			</li>
+		</ul>
+	</div>
+<p>
+	
+<form class="form-group" style="border:solid thin lightgrey;border-radius:5px;padding:2%;">
+	<label>To:</label>
+	<select ng-model="vm.contact" class="custom-select" ng-options="contact as contact.name for contact in vm.contacts track by contact.number"></select>
+	<p><div></div>
+	<textarea ng-model="vm.message" class="form-control" placeholder="message to send"></textarea><p><div></div>
+	<button ng-click="vm.sendMessage(vm.contact,vm.message)" class="btn btn-primary">Send</button>
+</form>
+
+<hr>
+
+<h5>Active Messages</h5>
+<ul class="list-inline-group">
+	<li class="list-inline-item" ng-repeat="number in vm.messages">
+		<button class="btn btn-sm btn-primary" ng-click="vm.showMessages(number)">{{number}}</button></li>
+</ul>
+
+<table class="table">
+	<thead>
+		<th>From</th>
+		<th>To</th>
+		<th>Date</th>
+		<th>Message</th>
+	</thead>
+	
+	<tr ng-repeat="message in vm.specific.recieved">
+		<td>{{message.from}}</td>
+		<td>{{message.to}}</td>
+		<td>{{message.date}}</td>
+		<td>{{message.message}}</td>
+	</tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
