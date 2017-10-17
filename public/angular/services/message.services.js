@@ -9,7 +9,8 @@ function MessageService($http){
 		deleteContact       : deleteContact,
 		sendMessage         : sendMessage,
 		getMessages         : getMessages,
-		getMessagesByNumber : getMessagesByNumber
+		getMessagesByNumber : getMessagesByNumber,
+		getMyNumber         : getMyNumber
 	};
 	return api;
 
@@ -37,5 +38,9 @@ function MessageService($http){
 
 	function getMessagesByNumber(number){
 		return $http.get('api/messages/'+number);
+	}
+
+	function getMyNumber(){
+		return $http.get('api/mynumber');
 	}
 }

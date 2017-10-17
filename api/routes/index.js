@@ -22,5 +22,9 @@ router
 router 
 	.route('/messages/:number')
 	.get(ctrlMessage.getMessagesByNumber);
+
+router
+	.route('/mynumber')
+	.get(ctrlMessage.twilioNumber);
 	
 module.exports = router;

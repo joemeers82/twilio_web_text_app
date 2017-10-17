@@ -5,9 +5,15 @@ angular.module('texter')
 function messageCtrl($http,$scope,$route,MessageService){
 	const vm = this;
 
+
 	//List Contacts
 	MessageService.listContacts().then(function(response){
 		vm.contacts = response.data;
+	});
+
+	//Get My Phone Number From API
+	MessageService.getMyNumber().then(function(response){
+		vm.myNumber = response.data;
 	});
 
 	//Get Messages Recieved
@@ -56,6 +62,27 @@ function messageCtrl($http,$scope,$route,MessageService){
 		console.log(number);
 		MessageService.getMessagesByNumber(number).then(function(response){
 			vm.specific = response.data;
+			vm.specific.recieved.forEach(function(x){
+
+				
+					
+				
+			})
+			
 		});
 	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+

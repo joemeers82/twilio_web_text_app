@@ -49,21 +49,18 @@
 		<button class="btn btn-sm btn-primary" ng-click="vm.showMessages(number)">{{number}}</button></li>
 </ul>
 
-<table class="table">
-	<thead>
-		<th>From</th>
-		<th>To</th>
-		<th>Date</th>
-		<th>Message</th>
-	</thead>
-	
-	<tr ng-repeat="message in vm.specific.recieved">
-		<td>{{message.from}}</td>
-		<td>{{message.to}}</td>
-		<td>{{message.date}}</td>
-		<td>{{message.message}}</td>
-	</tr>
-</table>
+
+	<ul class="p-0 list-unstyled">
+	<li ng-repeat="message in vm.specific.recieved" class="textBox">
+		<div class="w-75 rounded p-2" ng-class="{blue : message.from !== vm.myNumber,grey : message.from == vm.myNumber}">
+			
+			
+			<div class="small mb-2">{{message.date}}</div>
+			<div>{{message.message}}</div>
+		</div>
+	</li>
+	<ul>
+
 
 
 

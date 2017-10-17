@@ -1,19 +1,23 @@
-const mongoose = require('mongoose');
-const Contact  = mongoose.model('Contact');
-const dotenv   = require('dotenv/config');
+const mongoose      = require('mongoose');
+const Contact       = mongoose.model('Contact');
+const dotenv        = require('dotenv/config');
+const TWILIO_NUMBER = process.env.TWILIO_NUMBER;
 
-const client = require('twilio')(
+const client        = require('twilio')(
   process.env.TWILIO_ACCOUNT_SID, //Twilio Account Number
   process.env.TWILIO_AUTH_TOKEN   //Twilio Account Number
 );
 
+module.exports.twilioNumber = function(req,res){
+	res.status(201).json(TWILIO_NUMBER);
+}
 
 //Get Active Message Phone Numbers
 module.exports.getNumbers = function(req,res){
 	client.messages.list(function(err, data) {
 	    const messages  =[];
 		data.forEach(function(message) {
-    		if(message.from !== '+14013074518'){
+    		if(message.from !== TWILIO_NUMBER){
     			messages.push(message.from);
     		}
 	    });
